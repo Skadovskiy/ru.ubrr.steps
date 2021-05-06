@@ -18,7 +18,6 @@
     </repositories>
 
     <properties>
-
         <!--Project settings-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -47,11 +46,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>com.github.Skadovskiy</groupId>
-                <artifactId>ru.ubrr.steps</artifactId>
-                <version>-SNAPSHOT</version>
-            </dependency>
             <!-- COMMON LIBS (Log4J2 & math3) -->
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
@@ -110,11 +104,21 @@
                 <version>${junit-jupiter-engine.version}</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>com.github.Skadovskiy</groupId>
+                <artifactId>EmptyProject</artifactId>
+                <version>main-SNAPSHOT</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.github.Skadovskiy</groupId>
+            <artifactId>EmptyProject</artifactId>
+        </dependency>
+    </dependencies>
 
     <build>
-
         <plugins>
             <!-- JAR with dependencies -->
             <plugin>
