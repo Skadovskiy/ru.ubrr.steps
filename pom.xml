@@ -42,6 +42,8 @@
         <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
 
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <pmdVersion>6.34.0</pmdVersion>
+        <pmdPlugVersion>3.14.0</pmdPlugVersion>
     </properties>
 
     <dependencyManagement>
@@ -109,8 +111,46 @@
                 <artifactId>EmptyProject</artifactId>
                 <version>main-SNAPSHOT</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.14.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${pmdPlugVersion}</version>
+                <type>maven-plugin</type>
+            </dependency>
+            <dependency>
+                <groupId>net.sourceforge.pmd</groupId>
+                <artifactId>pmd</artifactId>
+                <version>${pmdVersion}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>net.sourceforge.pmd</groupId>
+                <artifactId>pmd-core</artifactId>
+                <version>${pmdVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sourceforge.pmd</groupId>
+                <artifactId>pmd-java</artifactId>
+                <version>${pmdVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sourceforge.pmd</groupId>
+                <artifactId>pmd-javascript</artifactId>
+                <version>${pmdVersion}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.sourceforge.pmd</groupId>
+                <artifactId>pmd-jsp</artifactId>
+                <version>${pmdVersion}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>com.github.Skadovskiy</groupId>
@@ -119,6 +159,38 @@
     </dependencies>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-pmd-plugin</artifactId>
+                    <version>${pmdPlugVersion}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-core</artifactId>
+                            <version>${pmdVersion}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-java</artifactId>
+                            <version>${pmdVersion}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-javascript</artifactId>
+                            <version>${pmdVersion}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>net.sourceforge.pmd</groupId>
+                            <artifactId>pmd-jsp</artifactId>
+                            <version>${pmdVersion}</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
         <plugins>
             <!-- JAR with dependencies -->
             <plugin>
@@ -214,9 +286,17 @@
                     </dependency>
                 </dependencies>
             </plugin>
-
         </plugins>
 
     </build>
 
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${pmdPlugVersion}</version>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
