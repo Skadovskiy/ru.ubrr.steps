@@ -26,7 +26,8 @@ public class Slot {
             if (isWin) break;
         }
         if (isWin) {
-            System.out.printf("Вы выиграли! Ваш приз - $%d, и ваш капитал теперь составляет: $%d", jackpot, money + jackpot);
+            money = money + jackpot;
+            System.out.printf("Вы выиграли! Ваш приз - $%d, и ваш капитал теперь составляет: $%d", jackpot, money);
         } else
             System.out.printf("Вы проиграли, соболезнуем...");
     }

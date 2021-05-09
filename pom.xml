@@ -156,6 +156,10 @@
             <groupId>com.github.Skadovskiy</groupId>
             <artifactId>EmptyProject</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math3</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -200,7 +204,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>games.Slot</mainClass>
+                            <mainClass>games.Choice</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
