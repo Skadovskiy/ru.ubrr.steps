@@ -94,7 +94,7 @@ public class BlackJack {
 
             System.out.printf("Компьютеру выпала карта %s\n", CardUtils.toString(addCard2Player(1)));
             System.out.printf("Компьютеру выпала карта %s\n", CardUtils.toString(addCard2Player(1)));
-            if (sum(0) < 17)
+            if (sum(1) < 17)
                 while (sum(1) < 17)
                     System.out.printf("Компьютер решил взять ещё и ему выпала карта %s\n", CardUtils.toString(addCard2Player(1)));
 
