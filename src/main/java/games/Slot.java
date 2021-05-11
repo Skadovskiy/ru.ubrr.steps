@@ -18,15 +18,16 @@ public class Slot {
             isWin = false;
             for (int x = 0; x < drums; x++) {
                 slot = (int) Math.round(Math.random() * 100) % (size - 1) + 1;
-                isWin = (slot == buf & isWin) | x == 0;
+                isWin = (slot == buf && isWin) || x == 0;
                 buf = slot;
-                screen = screen + Integer.toString(slot) + "|" ;
+                screen += Integer.toString(slot) + "|" ;
             }
             System.out.printf("У Вас $%-3d, ставка - $%-3d. Крутим барабаны! Розыгрыш принёс следующие результаты: %s.\n", money, bet, screen);
             if (isWin) break;
-        }
+        };
+
         if (isWin) {
-            money = money + jackpot;
+            money += jackpot;
             System.out.printf("Вы выиграли! Ваш приз - $%d, и ваш капитал теперь составляет: $%d", jackpot, money);
         } else
             System.out.printf("Вы проиграли, соболезнуем...");
