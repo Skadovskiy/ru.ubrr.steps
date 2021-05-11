@@ -1,8 +1,10 @@
 package games;
 
+import org.slf4j.Logger;
 import java.io.IOException;
 
 public class Choice {
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Choice.class);
     static final String LINE_SEPARATOR = System.lineSeparator();
 
     static char getCharacterFromUser() throws IOException {
@@ -19,7 +21,7 @@ public class Choice {
 
     public static void main(String... __) {
         while (true) {
-            System.out.println("Выберите игру:\n1 - \"однорукий бандит\", 2 - \"пьяница\", 3 - \"очко\"");
+            log.info("Выберите игру:\n1 - \"однорукий бандит\", 2 - \"пьяница\", 3 - \"очко\"");
             try {
                 switch (getCharacterFromUser()) {
                     case '1':
@@ -32,10 +34,10 @@ public class Choice {
                         BlackJack.main();
                         break;
                     default:
-                        System.out.println("Игры с таким номером нет!");
+                        log.info("Игры с таким номером нет!");
                 }
             } catch (java.io.IOException e) {
-                System.out.println(e.getMessage());
+                log.info(e.getMessage());
             }
         }
     }

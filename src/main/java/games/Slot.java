@@ -1,6 +1,9 @@
 package games;
 
+import org.slf4j.Logger;
+
 public class Slot {
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Slot.class);
     public static void main(String... __) {
         int money = 100;       // личные деньги
         int bet = 10;          // ставка
@@ -22,14 +25,14 @@ public class Slot {
                 buf = slot;
                 screen += Integer.toString(slot) + "|" ;
             }
-            System.out.printf("У Вас $%-3d, ставка - $%-3d. Крутим барабаны! Розыгрыш принёс следующие результаты: %s.\n", money, bet, screen);
+            log.info("У Вас ${}, ставка - ${}. Крутим барабаны! Розыгрыш принёс следующие результаты:{}.", money, bet, screen);
             if (isWin) break;
         };
 
         if (isWin) {
             money += jackpot;
-            System.out.printf("Вы выиграли! Ваш приз - $%d, и ваш капитал теперь составляет: $%d", jackpot, money);
+            log.info("Вы выиграли! Ваш приз - ${}, и ваш капитал теперь составляет: ${}", jackpot, money);
         } else
-            System.out.printf("Вы проиграли, соболезнуем...");
+            log.info("Вы проиграли, соболезнуем...");
     }
 }

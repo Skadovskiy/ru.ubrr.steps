@@ -2,16 +2,12 @@ package games;
 
 //Класс Emptytestclass импортирован из https://jitci.com/gh/Skadovskiy/EmptyProject
 
+import org.slf4j.Logger;
 import ru.ubrr.emptyproject.Emptytestclass;
 
 public class EmptytestclassImpl extends Emptytestclass {
-
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(EmptytestclassImpl.class);
     public static void main(String[] args) {
-        int cursor = 5;
-        int hren = 3;
-
-        cursor += hren;
-        //System.out.println(cursor++);
-        System.out.println(cursor);
+        log.info("Hello world.");
     }
 }

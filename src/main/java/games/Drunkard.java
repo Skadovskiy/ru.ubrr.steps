@@ -1,9 +1,11 @@
 package games;
 
+import org.slf4j.Logger;
+
 import static games.CardUtils.*;
 
 public class Drunkard {
-
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Drunkard.class);
     private static int incrementIndex(int i) {
         return (i + 1) % CARDS_TOTAL_COUNT;
     }
@@ -12,9 +14,9 @@ public class Drunkard {
         var isWin = false;
         for (var i = 0; i < PLAYERS_COUNT; i++) {
             isWin = playerCardTails[i] == playerCardHeads[i];
-            System.out.printf("У игрока №%d %d карт, ", i + 1, playerCardCount[i]);
+            log.info("У игрока №{} {} карт, ", i + 1, playerCardCount[i]);
         }
-        System.out.println();
+        log.info(" ");
         return isWin;
     }
 
@@ -47,7 +49,7 @@ public class Drunkard {
         var x = 0;
         do {
             ++x;
-            System.out.printf("Итерация №%d: ", x);
+            log.info("Итерация №{}: ", x);
 
             var distributionCards = new int[PLAYERS_COUNT];
             for (var i = 0; i < PLAYERS_COUNT; i++) {
@@ -55,9 +57,9 @@ public class Drunkard {
                 playersCards[i][playerCardTails[i]] = -1;                   // аннулируем (не обязательно, просто так наглядней в отладке)
                 playerCardTails[i] = incrementIndex(playerCardTails[i]);
                 playerCardCount[i]--;
-                System.out.printf("игрок №%d карта: %s; ", i, CardUtils.toString(distributionCards[i]));
+                log.info("игрок №{} карта: {}; ", i, CardUtils.toString(distributionCards[i]));
             }
-            System.out.println();
+            log.info("\n");
 
             // определение победителя, работает только на 2х игроках...
             winner = 0;
@@ -74,20 +76,20 @@ public class Drunkard {
                     playerCardHeads[playerid] = incrementIndex(playerCardHeads[playerid]);
                     playerCardCount[playerid]++;
                 }
-                System.out.print("Победитель не определен!\n");
+                log.info("Победитель не определен!");
             } else {           // раздачу забирает победитель
                 for (var playerid = 0; playerid < distributionCards.length; playerid++) {
                     playersCards[winner][playerCardHeads[winner]] = distributionCards[playerid];
                     playerCardHeads[winner] = incrementIndex(playerCardHeads[winner]);
                     playerCardCount[winner]++;
                 }
-                System.out.printf("Выиграл игрок №%d!\n", winner);
+                log.info("Выиграл игрок №{}!", winner);
             }
 
             if (x == 3000) break;
         } while (!playerCardsIsEmpty());
 
-        System.out.printf("Выиграл игрок №%d! Количество произведённых итераций: %d.\n", winner, x);
+        log.info("Выиграл игрок №{}! Количество произведённых итераций: {}.", winner, x);
     }
 }
 

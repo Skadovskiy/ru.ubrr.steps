@@ -1,8 +1,10 @@
 package games;
 
 import org.apache.commons.math3.util.MathArrays;
+import org.slf4j.Logger;
 
 public class CardUtils {
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(CardUtils.class);
     public static final int PARS_TOTAL_COUNT = Par.values().length;
     public static final int CARDS_TOTAL_COUNT = PARS_TOTAL_COUNT * Suit.values().length;
     public static final int PLAYERS_COUNT = 2;
